@@ -6,6 +6,7 @@ import { check, validationResult } from 'express-validator';
 import auth from '../../middleware/auth';
 import Profile, { IProfileDocument, IProfileEducation, IProfileExperience, IProfileSocial } from '../../models/Profile';
 import User from '../../models/User';
+import Post from '../../models/Posts';
 
 // @route  GET api/profile/me
 // @desc   Get current users profile
@@ -66,7 +67,6 @@ router.post(
         if (website) profileFields.website = website;
         if (location) profileFields.location = location;
         if (bio) profileFields.bio = bio;
-        if (status) profileFields.status = status;
         if (status) profileFields.status = status;
         if (githubusername) profileFields.githubusername = githubusername;
         if (skills) {
@@ -140,6 +140,7 @@ router.get('/user/:user_id', async (req, res) => {
 // @access Private
 router.delete('/', auth, async (req, res) => {
     try {
+        await Post.deleteMany({ user: req.user?.id });
         await Profile.findOneAndRemove({ user: req.user?.id });
         await User.findOneAndRemove({ _id: req.user?.id });
 
