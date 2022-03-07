@@ -1,6 +1,5 @@
 import express from 'express';
 import request from 'request';
-import { config } from 'node-config-ts';
 const router = express.Router();
 import { check, validationResult } from 'express-validator';
 import auth from '../../middleware/auth';
@@ -289,7 +288,7 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 router.get('/github/:username', async (req, res) => {
     try {
         const options = {
-            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id${config.githubClientId}&client_secret=${config.githubSecret}`,
+            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id${process.env.githubClientId}&client_secret=${process.env.githubSecret}`,
             method: 'GET',
             headers: { 'user-agent': 'node.js' },
         };

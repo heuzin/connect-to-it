@@ -1,10 +1,8 @@
 import mongoose, { ConnectOptions } from 'mongoose';
-import { config } from 'node-config-ts';
-const db = config.mongoURI;
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(db, {
+        await mongoose.connect(process.env.mongoURI!, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
         } as ConnectOptions);

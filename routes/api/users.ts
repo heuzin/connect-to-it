@@ -4,7 +4,6 @@ import gravatar from 'gravatar';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../../models/User';
-import { config } from 'node-config-ts';
 const router = express.Router();
 
 // @route  POST api/users
@@ -55,7 +54,7 @@ router.post(
                 },
             };
 
-            jwt.sign(payload, config.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+            jwt.sign(payload, process.env.jwtSecret!, { expiresIn: 360000 }, (err, token) => {
                 if (err) throw err;
                 res.json({ token });
             });

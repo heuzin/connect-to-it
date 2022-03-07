@@ -1,6 +1,5 @@
 import express from 'express';
 import { check, validationResult } from 'express-validator';
-import { config } from 'node-config-ts';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import auth from '../../middleware/auth';
@@ -54,7 +53,7 @@ router.post(
                 },
             };
 
-            jwt.sign(payload, config.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+            jwt.sign(payload, process.env.jwtSecret!, { expiresIn: 360000 }, (err, token) => {
                 if (err) throw err;
                 res.json({ token });
             });

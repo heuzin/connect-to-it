@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { config } from 'node-config-ts';
 import { IUserDocument } from '../models/User';
 
 declare global {
@@ -19,7 +18,7 @@ export default function(req: Request, res: Response, next: NextFunction) {
     }
 
     try {
-        const decoded = jwt.verify(token, config.jwtSecret);
+        const decoded = jwt.verify(token, process.env.jwtSecret!);
 
         req.user = (decoded as jwt.JwtPayload).user;
         next();
