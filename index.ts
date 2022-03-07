@@ -15,16 +15,19 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Connect To It API');
+});
+
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, './client/build')));
-
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, './client/build/index.html'));
+        app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
 
