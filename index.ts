@@ -25,7 +25,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
 app.get('/', (req, res) => {
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    app.use(express.static('client/build'));
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 
