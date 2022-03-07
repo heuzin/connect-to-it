@@ -24,12 +24,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
-if (process.env.NODE_ENV === 'production') {
-    app.get('/', (req, res) => {
-        app.use(express.static(path.resolve(__dirname, 'client', 'build')));
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-}
+app.get('/', (req, res) => {
+    app.use(express.static(path.resolve(__dirname, 'client', 'build')));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
