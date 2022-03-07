@@ -15,19 +15,23 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Connect To It API');
-});
-
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
-app.get('/', (req, res) => {
-    app.use(express.static('client/build'));
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+    app.get('/', (req, res) => {
+        app.use(express.static(path.join(__dirname, '/client/build')));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running...');
+    });
+}
 
 const PORT = process.env.PORT || 5000;
 
