@@ -1,13 +1,5 @@
 {
     "version": 2,
-    "public": false,
-    "builds": [
-        { "src": "package.json", "use": "@now/static-build" },
-        { "src": "index.ts", "use": "@now/node-server" }
-    ],
-    "routes": [
-        { "src": "/routes/api/.*", "dest": "index.ts" },
-        { "src": "^/static/(.*)", "dest": "/static/$1" },
-        { "src": ".*", "dest": "/index.html" }
-    ]
+    "builds": [{ "src": "./index.ts", "use": "@vercel/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
