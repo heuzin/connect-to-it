@@ -4,9 +4,10 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "start": "tsc-watch --onSuccess \"node server/dist/index.js\"",
-        "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run start\" \"npm run client\"",
+        "startdev": "tsc-watch --onSuccess \"node server/dist/index.js\"",
+        "start": "node dist/src/index.js",
+        "client": "npm startdev --prefix client",
+        "dev": "concurrently \"npm run startdev\" \"npm run client\"",
         "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
     },
     "author": "",
