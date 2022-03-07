@@ -8,7 +8,7 @@
         "postinstall": "node-config-ts",
         "client": "npm start --prefix client",
         "dev": "concurrently \"npm run start\" \"npm run client\"",
-        "now-build": "npm install --prefix client && npm run build --prefix client"
+        "now-build": "npm install --prefix client && npm run build --prefix client && mv build dist"
     },
     "author": "",
     "license": "ISC",
