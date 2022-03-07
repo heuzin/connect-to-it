@@ -14,6 +14,9 @@
     "license": "ISC",
     "dependencies": {
         "@types/express": "^4.17.13",
+        "@types/gravatar": "^1.8.3",
+        "@types/bcryptjs": "^2.4.2",
+        "@types/jsonwebtoken": "^8.5.8",
         "bcryptjs": "^2.4.3",
         "typescript": "^4.5.5",
         "dotenv": "^16.0.0",
@@ -28,10 +31,7 @@
         "ts-node": "^10.5.0"
     },
     "devDependencies": {
-        "@types/bcryptjs": "^2.4.2",
         "@types/config": "0.0.41",
-        "@types/gravatar": "^1.8.3",
-        "@types/jsonwebtoken": "^8.5.8",
         "@types/request": "^2.48.8",
         "concurrently": "^7.0.0"
     }
