@@ -32,7 +32,7 @@ const App = () => {
 
     return (
         <Provider store={store}>
-            <BrowserRouter basename="/">
+            <BrowserRouter>
                 <Fragment>
                     <Navbar />
                     <Routes>
