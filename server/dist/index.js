@@ -15,17 +15,21 @@ dotenv_1.default.config();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.get('/', (req, res) => {
-    res.send('Connect To It API');
-});
 app.use('/api/users', users_1.default);
 app.use('/api/auth', auth_1.default);
 app.use('/api/profile', profile_1.default);
 app.use('/api/posts', posts_1.default);
-app.get('/', (req, res) => {
-    app.use(express_1.default.static('client/build'));
-    res.sendFile(path_1.default.resolve(__dirname, 'client', 'build', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+    app.get('/', (req, res) => {
+        app.use(express_1.default.static(path_1.default.join(__dirname, '/client/build')));
+        res.sendFile(path_1.default.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+else {
+    app.get('/', (req, res) => {
+        res.send('API is running...');
+    });
+}
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
