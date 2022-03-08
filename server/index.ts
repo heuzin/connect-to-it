@@ -21,8 +21,10 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postsRoutes);
 
 if (process.env.NODE_ENV === 'production') {
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, '/client/build')));
+
     app.get('*', (req, res) => {
-        app.use(express.static(path.join(__dirname, './client/build')));
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 } else {

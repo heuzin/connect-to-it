@@ -20,8 +20,8 @@ app.use('/api/auth', auth_1.default);
 app.use('/api/profile', profile_1.default);
 app.use('/api/posts', posts_1.default);
 if (process.env.NODE_ENV === 'production') {
-    app.get('/', (req, res) => {
-        app.use(express_1.default.static(path_1.default.join(__dirname, '/client/build')));
+    app.get('*', (req, res) => {
+        app.use(express_1.default.static(path_1.default.join(__dirname, './client/build')));
         res.sendFile(path_1.default.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }

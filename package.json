@@ -5,7 +5,7 @@
     "main": "index.ts",
     "scripts": {
         "startdev": "tsc-watch --onSuccess \"node server/dist/index.js\"",
-        "start": "node server/dist/index.js",
+        "start": "node server/dist/index",
         "client": "npm start --prefix client",
         "dev": "concurrently \"npm run startdev\" \"npm run client\"",
         "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
