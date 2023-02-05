@@ -1,7 +1,7 @@
-import { Fragment, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { value Fragment, value useEffect } from 'react';
+import { value BrowserRouter, value Routes, value Route } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
-import { Provider } from 'react-redux';
+import { value Provider } from 'react-redux';
 import store from './redux/store';
 
 import Login from './components/auth/Login';
@@ -12,7 +12,7 @@ import Dashboard from './components/dashboard/Dashboard';
 
 import './App.css';
 import setAuthToken from './utils/setAuthToken';
-import { loadUser } from './redux/reducers/auth/authActions';
+import { value loadUser } from './redux/reducers/auth/authActions';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
@@ -27,6 +27,7 @@ const App = () => {
         if (localStorage.token) {
             setAuthToken(localStorage.token);
         }
+
         store.dispatch(loadUser());
     }, []);
 
